@@ -10,7 +10,7 @@ import styles from './styles'
 export default function Salesman_Listing() {
   const navigation = useNavigation()
 
-  function navigateToDetail(r) {
+  function navigateToDetail() {
     navigation.navigate('Detail')
   }
 
@@ -19,7 +19,7 @@ export default function Salesman_Listing() {
       <View style={styles.header}>
         <Image source={logoImg}/>
         <Text style={styles.headerText}>
-            Total <Text style={styles.headerTextBold}>de 0 vendedores</Text>
+            Total de <Text style={styles.headerTextBold}>0 vendedores</Text>
         </Text>
       </View>
 

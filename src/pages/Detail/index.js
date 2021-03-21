@@ -13,6 +13,9 @@ export default function Detail() {
     function navigateBack() {
         navigation.goBack()
     }
+    function navigateToUpdate() {
+        navigation.navigate('Update_Salesman')
+      }
 
     return (
         <View style={styles.container}>
@@ -31,8 +34,17 @@ export default function Detail() {
                 <Text style={styles.salesmanProperty}>Nome:</Text>
                 <Text style={styles.salesmanValue}>Kaio Anderson</Text>
 
-                <Text style={styles.salesmanProperty}>Cidade:</Text>
-                <Text style={styles.salesmanValue}>Cedro</Text>
+                <Text style={styles.salesmanProperty}>CPF:</Text>
+                <Text style={styles.salesmanValue}>065.342.245-18</Text>
+
+                <Text style={styles.salesmanProperty}>RG:</Text>
+                <Text style={styles.salesmanValue}>06534224518</Text>
+
+                <Text style={styles.salesmanProperty}>Cidade e Estado:</Text>
+                <Text style={styles.salesmanValue}>Cedro - CE</Text>
+
+                <Text style={styles.salesmanProperty}>Bairro:</Text>
+                <Text style={styles.salesmanValue}>Prado</Text>
 
                 <Text style={styles.salesmanProperty}>Endereço:</Text>
                 <Text style={styles.salesmanValue}>Rua Natanael Cortez, 643</Text>
@@ -51,7 +63,7 @@ export default function Detail() {
                 <Text style={styles.description}>Atualize os dados do vendedor ou exclua seu cadastro.</Text>
 
                 <View style={styles.actions}>
-                    <TouchableOpacity style={styles.action} onPress={() => {}}>
+                    <TouchableOpacity style={styles.action} onPress={navigateToUpdate}>
                         <Text style={styles.actionText}>Editar</Text>
                     </TouchableOpacity>
 
