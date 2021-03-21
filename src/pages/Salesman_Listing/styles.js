@@ -26,7 +26,7 @@ export default StyleSheet.create({
     title: {
         fontSize: 30,
         marginBottom: 16,
-        marginTop: 48,
+        marginTop: 32,
         color: '#13131a',
         fontWeight: 'bold',
     },
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     },
 
     salesmanList: {
-        marginTop: 32,
+        marginTop: 8,
     },
 
     salesman: {
@@ -71,5 +71,29 @@ export default StyleSheet.create({
         color: '#e02041',
         fontSize: 15,
         fontWeight: 'bold',
+    },
+
+    rightButton: {
+        marginTop: 16,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
+    newSalesman: {
+        backgroundColor: '#e02041',
+        borderRadius: 8,
+        height: 40,
+        width: '40%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+
+    actionText: {
+        color: '#FFF',
+        fontSize: 15,
+        fontWeight: 'bold',
     }
+
 })

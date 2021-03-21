@@ -9,7 +9,7 @@ import styles from './styles'
 
 const { height } = Dimensions.get('window')
 
-export default function Create_Salesman() {
+export default function Update_Salesman() {
 
     const navigation = useNavigation()
 

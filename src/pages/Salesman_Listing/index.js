@@ -23,8 +23,15 @@ export default function Salesman_Listing() {
         </Text>
       </View>
 
-      <Text style={styles.title}>Listagem de vendedores!</Text>
-      <Text style={styles.description}>Veja todos os funcionários cadastrados.</Text>
+      <Text style={styles.title}>Lista de vendedores!</Text>
+      <Text style={styles.description}>Veja todos os vendedores cadastrados.</Text>
+
+      <View style={styles.rightButton}>
+        <View></View>
+        <TouchableOpacity style={styles.newSalesman}>
+          <Text style={styles.actionText}>Criar Novo</Text>
+        </TouchableOpacity>
+      </View>
 
       <FlatList
         data={[1, 2, 3]}
