@@ -1,24 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons'
+import AsyncStorage from  '@react-native-community/async-storage';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 
 import logoImg from '../../assets/logo.png'
-
+import api from '../../services/api'
 import styles from './styles'
 
 export default function Detail() {
-    const navigation = useNavigation()
     const route = useRoute()
-
     const salesman = route.params.salesman
+
+    //const [salesmanID, setSalesmanID] = useState('')
+
+    const navigation = useNavigation()
 
     function navigateBack() {
         navigation.goBack()
     }
-    function navigateToUpdate() {
-        navigation.navigate('Update_Salesman')
-      }
+
+    async function navigateToUpdate(salesman) {
+        navigation.navigate('Update_Salesman', {salesman})
+    }
+
+    async function handleDeleteSalesman() {
+        const adminID = await AsyncStorage.getItem('adminID');
+
+        try {
+            await api.delete(`salesman/${salesman.id}`, {
+                headers: {
+                    Authorization: adminID,
+                }
+            })
+
+            alert("Vendedor excluído com sucesso.")
+            
+            navigation.navigate('Salesman_Listing')
+
+        } catch (err) {
+            alert(err)
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -66,11 +89,11 @@ export default function Detail() {
                 <Text style={styles.description}>Atualize os dados do vendedor ou exclua seu cadastro.</Text>
 
                 <View style={styles.actions}>
-                    <TouchableOpacity style={styles.action} onPress={navigateToUpdate}>
+                    <TouchableOpacity style={styles.action} onPress={() => navigateToUpdate(salesman)}>
                         <Text style={styles.actionText}>Editar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.action} onPress={() => {}}>
+                    <TouchableOpacity style={styles.action} onPress={handleDeleteSalesman}>
                         <Text style={styles.actionText}>Excluir</Text>
                     </TouchableOpacity>
                 </View>    

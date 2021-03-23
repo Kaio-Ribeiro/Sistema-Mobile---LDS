@@ -17,6 +17,7 @@ export default function Routes() {
                 <AppStack.Screen name="Login" component={Login} />
                 <AppStack.Screen name="Salesman_Listing" component={Salesman_Listing} />
                 <AppStack.Screen name="Detail" component={Detail} />
+                <AppStack.Screen name="Create_Salesman" component={Create_Salesman} />
                 <AppStack.Screen name="Update_Salesman" component={Update_Salesman} />
             </AppStack.Navigator>
         </NavigationContainer>

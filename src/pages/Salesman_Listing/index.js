@@ -19,6 +19,10 @@ export default function Salesman_Listing() {
     navigation.navigate('Detail', { salesman })
   }
 
+  function navigateToCreateSalesman() {
+    navigation.navigate('Create_Salesman')
+  }
+
   async function loadSalesman() {
     if(loading) {
       return
@@ -58,7 +62,10 @@ export default function Salesman_Listing() {
 
       <View style={styles.rightButton}>
         <View></View>
-        <TouchableOpacity style={styles.newSalesman}>
+        <TouchableOpacity 
+          style={styles.newSalesman}
+          onPress={navigateToCreateSalesman}
+        >
           <Text style={styles.actionText}>Criar Novo</Text>
         </TouchableOpacity>
       </View>
