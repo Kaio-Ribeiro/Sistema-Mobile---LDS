@@ -1,25 +1,55 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 
 import logoImg from '../../assets/logo.png'
-
+import api from '../../services/api'
 import styles from './styles'
 
 export default function Salesman_Listing() {
+  const [salesman, setSalesman] = useState([])
+  const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(false)
+
   const navigation = useNavigation()
 
-  function navigateToDetail() {
-    navigation.navigate('Detail')
+  function navigateToDetail(salesman) {
+    navigation.navigate('Detail', { salesman })
   }
+
+  async function loadSalesman() {
+    if(loading) {
+      return
+    }
+
+    if(total > 0 && salesman.length == total) {
+      return
+    } 
+
+    setLoading(true)
+
+    const response = await api.get('/salesman', {
+      params: { page }
+    })
+
+    setSalesman([...salesman, ...response.data])
+    setTotal(response.headers['x-total-count'])
+    setPage(page + 1)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadSalesman()
+  }, [])
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={logoImg}/>
         <Text style={styles.headerText}>
-            Total de <Text style={styles.headerTextBold}>0 vendedores</Text>
+            Total de <Text style={styles.headerTextBold}>{total} vendedores</Text>
         </Text>
       </View>
 
@@ -34,23 +64,25 @@ export default function Salesman_Listing() {
       </View>
 
       <FlatList
-        data={[1, 2, 3]}
+        data={salesman}
         style={styles.salesmanList}
-        keyExtractor={salesman => String(salesman)}
-        renderItem={() => (
+        keyExtractor={salesman => String(salesman.id)}
+        onEndReached={loadSalesman}
+        onEndReachedThreshold={0.2}
+        renderItem={({ item: salesman }) => (
           <View style={styles.salesman}>
             <Text style={styles.salesmanProperty}>E-mail:</Text>
-            <Text style={styles.salesmanValue}>kaio@gmail.com</Text>
+            <Text style={styles.salesmanValue}>{salesman.email}</Text>
 
             <Text style={styles.salesmanProperty}>Nome:</Text>
-            <Text style={styles.salesmanValue}>Kaio Anderson</Text>
+            <Text style={styles.salesmanValue}>{salesman.name}</Text>
 
             <Text style={styles.salesmanProperty}>Quantidade de Planos Vendidos:</Text>
-            <Text style={styles.salesmanValue}>4</Text>
+            <Text style={styles.salesmanValue}>{salesman.sales_amount}</Text>
 
             <TouchableOpacity 
               style={styles.detailsButton}
-              onPress={navigateToDetail}
+              onPress={() => navigateToDetail(salesman)}
             >
               <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
               <Feather name="arrow-right" size={16} color="#E02041"/>

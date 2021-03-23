@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons'
-import { View, Text, Image, ScrollView, TouchableOpacity, Linking } from 'react-native'
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 
 import logoImg from '../../assets/logo.png'
 
@@ -9,6 +9,9 @@ import styles from './styles'
 
 export default function Detail() {
     const navigation = useNavigation()
+    const route = useRoute()
+
+    const salesman = route.params.salesman
 
     function navigateBack() {
         navigation.goBack()
@@ -29,31 +32,31 @@ export default function Detail() {
 
             <ScrollView style={styles.salesman}>
                 <Text style={[styles.salesmanProperty, { marginTop: 0 }]}>E-mail:</Text>
-                <Text style={styles.salesmanValue}>kaio@gmail.com</Text>
+                <Text style={styles.salesmanValue}>{salesman.email}</Text>
 
                 <Text style={styles.salesmanProperty}>Nome:</Text>
-                <Text style={styles.salesmanValue}>Kaio Anderson</Text>
+                <Text style={styles.salesmanValue}>{salesman.name}</Text>
 
                 <Text style={styles.salesmanProperty}>CPF:</Text>
-                <Text style={styles.salesmanValue}>065.342.245-18</Text>
+                <Text style={styles.salesmanValue}>{salesman.CPF}</Text>
 
                 <Text style={styles.salesmanProperty}>RG:</Text>
-                <Text style={styles.salesmanValue}>06534224518</Text>
+                <Text style={styles.salesmanValue}>{salesman.RG}</Text>
 
                 <Text style={styles.salesmanProperty}>Cidade e Estado:</Text>
-                <Text style={styles.salesmanValue}>Cedro - CE</Text>
+                <Text style={styles.salesmanValue}>{salesman.city} - {salesman.uf}</Text>
 
                 <Text style={styles.salesmanProperty}>Bairro:</Text>
-                <Text style={styles.salesmanValue}>Prado</Text>
+                <Text style={styles.salesmanValue}>{salesman.district}</Text>
 
                 <Text style={styles.salesmanProperty}>Endereço:</Text>
-                <Text style={styles.salesmanValue}>Rua Natanael Cortez, 643</Text>
+                <Text style={styles.salesmanValue}>{salesman.street}, n° {salesman.number}</Text>
 
                 <Text style={styles.salesmanProperty}>Meta de Vendas:</Text>
-                <Text style={styles.salesmanValue}>7</Text>
+                <Text style={styles.salesmanValue}>{salesman.sales_goal}</Text>
 
                 <Text style={styles.salesmanProperty}>Quantidade de Planos Vendidos:</Text>
-                <Text style={styles.salesmanValue}>4</Text>
+                <Text style={styles.salesmanValue}>{salesman.sales_amount}</Text>
 
             </ScrollView>
 
