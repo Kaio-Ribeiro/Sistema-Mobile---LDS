@@ -25,6 +25,7 @@ export default function Update_Salesman() {
     const navigation = useNavigation()
 
     const route = useRoute()
+    const salesmanObject = route.params.salesman
     const salesmanID = route.params.salesman.id
 
     function navigateBack() {
@@ -94,14 +95,14 @@ export default function Update_Salesman() {
                             style={styles.input}
                             placeholder="Nome"
                             onChangeText={name => setName(name)}
-                            defaultValue={name}
+                            defaultValue={salesmanObject.name}
                         />
 
                         <TextInput 
                             style={styles.input}
                             placeholder="E-mail"
                             onChangeText={email => setEmail(email)}
-                            defaultValue={email}
+                            defaultValue={salesmanObject.email}
                         />
                                                 
                         <TextInput 
@@ -109,7 +110,7 @@ export default function Update_Salesman() {
                             placeholder="CPF"
                             keyboardType="numeric"
                             onChangeText={CPF => setCPF(CPF)}
-                            defaultValue={CPF}
+                            defaultValue={salesmanObject.CPF}
                         />
 
                         <TextInput 
@@ -117,7 +118,7 @@ export default function Update_Salesman() {
                             placeholder="RG"
                             keyboardType="numeric"
                             onChangeText={RG => setRG(RG)}
-                            defaultValue={RG}
+                            defaultValue={salesmanObject.RG}
                         />
 
                         <TextInput 
@@ -125,7 +126,7 @@ export default function Update_Salesman() {
                             placeholder="Meta de Vendas"
                             keyboardType="numeric"
                             onChangeText={sales_goal => setSales_goal(sales_goal)}
-                            defaultValue={sales_goal}
+                            defaultValue={String(salesmanObject.sales_goal)}
                         />
 
                         <Text style={styles.formProperty}>LOCALIZAÇÃO:</Text>
@@ -134,7 +135,7 @@ export default function Update_Salesman() {
                             style={styles.input}
                             placeholder="Rua"
                             onChangeText={street => setStreet(street)}
-                            defaultValue={street}
+                            defaultValue={salesmanObject.street}
                         />
 
                         <TextInput 
@@ -142,14 +143,14 @@ export default function Update_Salesman() {
                             placeholder="N° da casa"
                             keyboardType="numeric"
                             onChangeText={number => setNumber(number)}
-                            defaultValue={number}
+                            defaultValue={String(salesmanObject.number)}
                         />
 
                         <TextInput 
                             style={styles.input}
                             placeholder="Bairro"
                             onChangeText={district => setDistrict(district)}
-                            defaultValue={district}
+                            defaultValue={salesmanObject.district}
                         />
 
                         <View style={styles.inputGroup}>
@@ -157,14 +158,14 @@ export default function Update_Salesman() {
                                 style={styles.inputCity}
                                 placeholder="Cidade"
                                 onChangeText={city => setCity(city)}
-                                defaultValue={city}
+                                defaultValue={salesmanObject.city}
                             />
 
                             <TextInput 
                                 style={styles.inputUF}
                                 placeholder="UF"
                                 onChangeText={uf => setUf(uf)}
-                                defaultValue={uf}
+                                defaultValue={salesmanObject.uf}
                             />
                             
                         </View>

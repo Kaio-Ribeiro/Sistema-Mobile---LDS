@@ -26,7 +26,7 @@ export default function Login() {
 
             await AsyncStorage.setItem('adminID', JSON.stringify(response.data));
             
-            navigation.navigate('Salesman_Listing')
+            navigation.navigate('Home_Admin')
 
         } catch (err) {
             alert("'Falha no login, tente novamente.")
