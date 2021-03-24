@@ -21,7 +21,7 @@ export default function Login() {
 
 
         try {
-            const response = await api.post('/sessionAdmin', data)
+            const response = await api.post(picker, data)
             console.log(response.data)
 
             await AsyncStorage.setItem('adminID', JSON.stringify(response.data));
